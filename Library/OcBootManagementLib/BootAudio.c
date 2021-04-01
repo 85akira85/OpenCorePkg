@@ -184,6 +184,10 @@ OcPlayAudioEntry (
     OcPlayAudioFile (Context, OcVoiceOverAudioFileExternal, FALSE);
   }
 
+  if (Entry->IsFolder) {
+    OcPlayAudioFile (Context, OcVoiceOverAudioFileDiskImage, FALSE);
+  }
+
   if (Entry->Type == OC_BOOT_APPLE_OS) {
     OcPlayAudioFile (Context, OcVoiceOverAudioFilemacOS, FALSE);
   } else if (Entry->Type == OC_BOOT_APPLE_RECOVERY) {
