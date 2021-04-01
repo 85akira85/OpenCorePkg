@@ -1053,10 +1053,24 @@ InternalBootPickerFocus (
   IN     BOOLEAN              Focus
   )
 {
+  OC_BOOT_ENTRY *BootEntry;
+
+  BootEntry = InternalGetVolumeEntry (mBootPicker.SelectedIndex)->Context;
+
   if (!Focus) {
     mBootPickerSelectorContainer.Obj.Opacity = 0;
   } else {
     mBootPickerSelectorContainer.Obj.Opacity = 0xFF;
+
+    DrawContext->GuiContext->PickerContext->PlayAudioFile (
+      DrawContext->GuiContext->PickerContext,
+      OcVoiceOverAudioFileSelected,
+      FALSE
+      );
+    DrawContext->GuiContext->PickerContext->PlayAudioEntry (
+      DrawContext->GuiContext->PickerContext,
+      BootEntry
+      );
   }
 
   GuiRequestDraw (

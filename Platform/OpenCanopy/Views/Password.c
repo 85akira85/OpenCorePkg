@@ -343,6 +343,14 @@ InternalPasswordBoxFocus (
 {
   if (Focus) {
     mPasswordBoxContainer.Obj.Opacity = 0xFF;
+
+    if (DrawContext->GuiContext->PickerContext->PickerAudioAssist) {
+      DrawContext->GuiContext->PickerContext->PlayAudioFile (
+        DrawContext->GuiContext->PickerContext,
+        OcVoiceOverAudioFileEnterPassword,
+        TRUE
+        );
+    }
   } else {
     mPasswordBoxContainer.Obj.Opacity = 0x100 / 2;
   }
